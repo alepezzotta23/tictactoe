@@ -1,0 +1,21 @@
+<div>
+    <h1>Choose your grid: </h1>
+    <form (submit)="generateGrid(o.value)">
+        <select required class="form-control" ng-model="selectedId" ng-options="Grid size">
+            <option value="">Select Grid Size</option>
+            <option *ngFor="let o of options">
+                {{o.value}}
+            </option>
+            
+        </select>
+        <nav>
+            <button (click)="generateGrid(selectedId)" nbButton outline status="danger">Start new Game</button>
+        </nav>
+        
+    </form>
+</div>
+
+
+<main>
+
+</main>
