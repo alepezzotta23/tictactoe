@@ -8,10 +8,10 @@ function createRouter(db) {
 }
 module.exports = createRouter;
 
-router.post('/event', (player1, player2, winner) => {
+router.post('/event', (player1, player2, winner, res) => {
     db.query(
-        'INSERT INTO TICTACTOE_GAME (GAME_ID, PLAYER1, PLAYER2, START_TIME, END_TIME) VALUES (?,?,?,?,?)',
-        [router.get() + 1, req.body.name, req.body.description, new Date(req.body.date)],
+        'INSERT INTO TICTACTOE.game_data (PLAYER_One, PLAYER_two, winner, gameEndAt) VALUES (?,?,?,?,?)',
+        [player1, player2, winner, new Date()],
         (error) => {
             if (error) {
                 console.error(error);
@@ -23,17 +23,3 @@ router.post('/event', (player1, player2, winner) => {
     );
 });
 
-router.get('/event', function (req, res, next) {
-    db.query(
-        'SELECT MAX(GAME_ID) FROM TICTACTOE_GAME',
-        [owner, 10 * (req.params.page || 0)],
-        (error, results) => {
-            if (error) {
-                console.log(error);
-                res.status(500).json({ status: 'error' });
-            } else {
-                res.status(200).json(results);
-            }
-        }
-    );
-});
