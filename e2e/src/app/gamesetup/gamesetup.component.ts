@@ -24,15 +24,15 @@ export class GamesetupComponent implements OnInit {
     { name: "option3", value: 10 }
   ]
 
-  generateGrid(e) {
+  generateGrid(e: number) {
     if(e==3) {
       this.BoardComponent.newGame(e); 
     } else {
       if (e == 5) {
-        this.BoardComponent.newGame(e);
+      this.BoardComponent.newGame(e);
       } else {
         if (e == 10) {
-          this.BoardComponent.newGame(e);
+      this.BoardComponent.newGame(e);
         }
       }
     }  
